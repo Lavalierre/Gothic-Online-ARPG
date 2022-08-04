@@ -1,0 +1,15 @@
+<server>
+	<config public=true host_name="Gothic Online: ARPG" max_slots=32 port=28970 rcon_pass="SomePassword" />
+	<master host="master.gothic-online.com.pl" port=7777 />
+	<version build=0 />
+	<world name="NEWWORLD\\NEWWORLD.ZEN" />
+	<description>
+	</description>
+
+	<import src="default/scripts.xml" />
+	
+	<items src="items.xml" />
+	<mds src="mds.xml" />
+
+	<modification enabled=true />
+</server>
