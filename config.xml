@@ -7,6 +7,8 @@
 	</description>
 
 	<import src="default/scripts.xml" />
+
+	<import src="modules/server/import.xml"/>
 	
 	<items src="items.xml" />
 	<mds src="mds.xml" />

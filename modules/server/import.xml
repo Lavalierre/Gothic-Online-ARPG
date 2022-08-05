@@ -1,0 +1,3 @@
+<server>
+    <import src="mysql/load.xml" />
+</server>
