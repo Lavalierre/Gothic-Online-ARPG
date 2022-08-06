@@ -10,6 +10,8 @@
 
 	<import src="modules/shared/import.xml"/>
 	<import src="modules/server/import.xml"/>
+
+	<script src="test.nut" type="server" />
 	
 	<items src="items.xml" />
 	<mds src="mds.xml" />

@@ -13,4 +13,5 @@ addEvent("MySQL.onInit");
 addEventHandler("MySQL.onInit", function()
 {
     ModuleAPI.Add("MySQL.Query", 1, MySQL.get().Query, MySQL.get());
+    ModuleAPI.Add("MySQL.Insert", 3, MySQL.get().Insert, MySQL.get());
 });

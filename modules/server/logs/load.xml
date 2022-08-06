@@ -1,4 +1,5 @@
 <server>
     <script src="main.nut"          type="server" />
     <script src="creation.nut"      type="server" />
+    <script src="api.nut"           type="server" />
 </server>

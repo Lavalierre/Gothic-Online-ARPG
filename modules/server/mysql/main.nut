@@ -77,7 +77,7 @@ function MySQL::Insert(tab_name, names, values)
         if (i != 0)
             _query += ",";
         
-        _query += val;
+        _query += "'" + val + "'";
     }
 
     _query += ")";
