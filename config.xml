@@ -8,6 +8,7 @@
 
 	<import src="default/scripts.xml" />
 
+	<import src="modules/shared/import.xml"/>
 	<import src="modules/server/import.xml"/>
 	
 	<items src="items.xml" />

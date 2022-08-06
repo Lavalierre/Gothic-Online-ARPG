@@ -1,6 +1,6 @@
 /*
     8/5/2022
-    Author: Osmith
+    Author: RTSR
     Gothic Online: ARPG
 */
 
@@ -82,15 +82,16 @@ function MySQL::Insert(tab_name, names, values)
     return Query(_query);
 }
 
-function MySQL::Update(tab_name, condition, ...)
+function MySQL::Update(tab_name, condition, set)
 {
-    if (typeof tab_name != "string" ||
-        typeof condition != "string")
+    if (typeof tab_name     != "string" ||
+        typeof condition    != "string" ||
+        typeof set          != "array")
         return null;
     
     local _query = -1;
 
-    foreach(i, val in vargv)
+    foreach(i, val in set)
     {
         if (typeof val != "string") continue;
 
