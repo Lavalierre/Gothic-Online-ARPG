@@ -1,7 +1,8 @@
 <server>
     <module src="lib/MySQL.dll"     type="server" />
 
-    <script src="functions.nut"     type="server" />
     <script src="constants.nut"     type="server" />
     <script src="main.nut"          type="server" />
+    <script src="create.nut"        type="server" />
+    <script src="api.nut"           type="server" />
 </server>

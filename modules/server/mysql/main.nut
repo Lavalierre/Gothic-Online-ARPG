@@ -21,6 +21,9 @@ class MySQL
     }
 
     o_handler = -1;
+
+    static function get() { return MYSQL_MAN; }
+    function handler() { return o_handler; }
 }
 
 // This method is calling by other methods, but not by the user himself
@@ -108,7 +111,9 @@ function MySQL::Update(tab_name, condition, set)
 
 // *** EVENT HANDLING *** //
 
-addEventHandler("onInit", function()
+addEventHandler("onPreInit", function()
 {
     MYSQL_MAN = MySQL();
+    callEvent("MySQL.onInit");
+    MYSQL_MAN.CreateDump();
 });

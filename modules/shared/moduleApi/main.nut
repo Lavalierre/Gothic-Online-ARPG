@@ -8,11 +8,12 @@ local callTable = {};
 
 class ModuleAPI_Call
 {
-    constructor(name, args, ref)
+    constructor(name, args, ref, env)
     {
         this.name       = name;
-        this.args       = args;
+        this.args       = args + 1;
         this.ref        = ref;
+        this.env        = env;
 
         if (!callTable.rawin(name))
             callTable[name] <- this;
@@ -22,47 +23,41 @@ class ModuleAPI_Call
 
     function Call(vargv)
     {
-        if (vargv.len() != args)
+        vargv.insert(0, env);
+        local end = vargv.len();
+
+        if (end != args)
         {
-            ModuleAPI.Error("Wrong number of parameters in function " + name + " (" + vargv.len() + " != " + args + ")");
+            ModuleAPI.Error("Wrong number of parameters in function " + name + " (expecting " + (args - 1) + ")");
             return null;
         }
 
         if (typeof ref != "function")
         {
-            ModuleAPI.Error("Reference in function " + name + " is not actual function (typeof = " + (typeof ref) + ")");
+            ModuleAPI.Error("Reference in function " + name + " is not an actual function (typeof: " + (typeof ref) + ")");
             return null;
         }
 
-        local argString = "";
-        for(local i = 0; i < vargv.len(); i++)
-        {
-            if (argString != "")
-                argString += ",";
-            argString += "vargv[1][" + i + "]";
-        }
-
-        local compileString     = "return vargv[0](" + argString + ");";
-        local compiledFunc      = compilestring(compileString);
-        return compiledFunc(ref, vargv);
+        return ref.acall(vargv);
     }
 
     name        = "";
     args        = -1;
     ref         = -1;
+    env         = -1;
 }
 
 class ModuleAPI
 {
-    static function Add(name, args, ref)
+    static function Add(name, args, ref, env = getroottable())
     {
-        ModuleAPI_Call(name, args, ref);
+        ModuleAPI_Call(name, args, ref, env);
     }
 
     static function Call(name, ...)
     {
-        if (callTable.rawin(name))
-            return callTable.rawget(name).Call(vargv);
+        if (name in callTable)
+            return callTable[name].Call(vargv);
         else
             return null;
     }
@@ -72,5 +67,3 @@ class ModuleAPI
         print("[ModuleAPI]: Unexpected error: " + str);
     }
 }
-
-getroottable()["ModuleAPI"] <- ModuleAPI;

@@ -1,3 +1,5 @@
 <server>
-    <import src="mysql/load.xml" />
+    <import src="events/load.xml"   />
+    <import src="mysql/load.xml"    />
+    <import src="logs/load.xml"     />
 </server>
